@@ -19,18 +19,14 @@ deb:
   afterInstall: './script/linux-after-install.sh'
   afterRemove: './script/linux-after-remove.sh'
   depends:
-    # default Electron dependencies
-    - gconf2
-    - gconf-service
+    - libayatana-appindicator3-1
     - libnotify4
-    - libappindicator1
     - libxtst6
     - libnss3
-    # dugite-native dependencies
     - libcurl3 | libcurl4
-    # keytar dependencies
     - libsecret-1-0
     - gnome-keyring
+
 rpm:
   depends:
     # dugite-native dependencies

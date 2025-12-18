@@ -51,7 +51,9 @@
     "yarn": ">= 1.9"
   },
   "resolutions": {
-    "@types/react-css-transition-replace/@types/react": "^16.14.62"
+    "@types/react-css-transition-replace/@types/react": "^16.14.62",
+    "wrap-ansi": "7.0.0",
+    "cliui": "7.0.4"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.25.0",
@@ -155,11 +157,12 @@
     "@types/webpack-merge": "^5.0.0",
     "@types/xml2js": "^0.4.11",
     "diff": "^7.0.0",
-    "electron": "38.2.0",
-    "electron-builder": "^24.13.3",
-    "electron-packager": "^17.1.1",
-    "electron-winstaller": "^5.0.0",
-    "eslint-plugin-github": "^5.1.5",
+    "electron": "39.2.7",
+    "electron-builder": "^26.0.12",
+    "electron-builder-squirrel-windows": "26.0.12",
+    "electron-packager": "^17.1.2",
+    "electron-winstaller": "^5.4.0",
+    "eslint-plugin-github": "^6.0.0",
     "markdownlint-cli": "^0.32.2",
     "node-test-github-reporter": "^1.2.0",
     "reserved-words": "^0.1.2",

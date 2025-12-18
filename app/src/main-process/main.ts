@@ -175,22 +175,28 @@ if (!handlingSquirrelEvent) {
   const gotSingleInstanceLock = app.requestSingleInstanceLock()
   isDuplicateInstance = !gotSingleInstanceLock
 
-  app.on('second-instance', (event, args, workingDirectory) => {
-    // Someone tried to run a second instance, we should focus our window.
-    if (mainWindow) {
-      if (mainWindow.isMinimized()) {
-        mainWindow.restore()
-      }
-
-      if (!mainWindow.isVisible()) {
-        mainWindow.show()
-      }
-
-      mainWindow.focus()
+app.on('second-instance', (event, args, workingDirectory) => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) {
+      mainWindow.restore()
     }
 
+    if (!mainWindow.isVisible()) {
+      mainWindow.show()
+    }
+
+    mainWindow.focus()
+  }
+
+  // Check if any arg is a protocol URL (x-github-client://)
+  const urlArg = args.find(arg => arg.startsWith('x-github-client://'))
+  if (urlArg) {
+    handleAppURL(urlArg)
+  } else {
     handleCommandLineArguments(args)
-  })
+  }
+})
 
   if (isDuplicateInstance) {
     app.quit()
@@ -245,7 +251,7 @@ async function handleCommandLineArguments(argv: string[]) {
   // line arguments might be added by Chromium
   // (https://electronjs.org/docs/api/app#event-second-instance).
 
-  if (__WIN32__ && args['protocol-launcher'] === true) {
+  if ((__WIN32__ || __LINUX__) && args['protocol-launcher'] === true) {
     // On Windows we'll end up getting called with something like
     // `--protocol-launcher --allow-file-access-from-files x-github-client://..`
     // which minimist naturally interprets as
