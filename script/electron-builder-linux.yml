@@ -28,7 +28,6 @@ linux:
     - x-scheme-handler/x-github-desktop-dev-auth
   target:
     - deb
-    - rpm
     - AppImage
   maintainer: 'GitHub, Inc <opensource+desktop@github.com>'
 deb:
@@ -43,11 +42,3 @@ deb:
     - libsecret-1-0
     - gnome-keyring
 
-rpm:
-  artifactName: 'GitHubDesktop-${version}.x86_64.rpm'
-  afterInstall: './script/linux-after-install.sh'
-  afterRemove: './script/linux-after-remove.sh'
-  depends:
-    - libcurl
-    - libsecret
-    - gnome-keyring
