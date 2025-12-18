@@ -189,8 +189,12 @@ app.on('second-instance', (event, args, workingDirectory) => {
     mainWindow.focus()
   }
 
-  // Check if any arg is a protocol URL (x-github-client://)
-  const urlArg = args.find(arg => arg.startsWith('x-github-client://'))
+  // Check if any arg is a protocol URL
+  const urlArg = args.find(arg => {
+    return Array.from(possibleProtocols).some(protocol => 
+      arg.startsWith(`${protocol}://`)
+    )
+  })
   if (urlArg) {
     handleAppURL(urlArg)
   } else {

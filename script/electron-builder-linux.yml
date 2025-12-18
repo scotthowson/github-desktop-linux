@@ -3,6 +3,22 @@ linux:
   category: 'GNOME;GTK;Development'
   packageCategory: 'GNOME;GTK;Development'
   icon: 'app/static/logos'
+  executableName: 'github-desktop'
+  executableArgs:
+    - '--no-sandbox'
+    - '%u'
+  desktop:
+    entry:
+      Name: 'GitHub Desktop'
+      GenericName: 'Git Client'
+      Comment: 'Simple collaboration from your desktop'
+      Terminal: 'false'
+      Type: 'Application'
+      Icon: 'github-desktop'
+      Categories: 'GNOME;GTK;Development;RevisionControl;'
+      MimeType: 'x-scheme-handler/x-github-client;x-scheme-handler/x-github-desktop-auth;x-scheme-handler/x-github-desktop-dev-auth;'
+      StartupWMClass: 'GitHubDesktop'
+      StartupNotify: 'true'
   mimeTypes:
     - x-scheme-handler/x-github-client
     - x-scheme-handler/x-github-desktop-auth
@@ -28,9 +44,10 @@ deb:
     - gnome-keyring
 
 rpm:
+  artifactName: 'GitHubDesktop-${version}.x86_64.rpm'
+  afterInstall: './script/linux-after-install.sh'
+  afterRemove: './script/linux-after-remove.sh'
   depends:
-    # dugite-native dependencies
     - libcurl
-    # keytar dependencies
     - libsecret
     - gnome-keyring

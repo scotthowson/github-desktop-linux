@@ -25,6 +25,17 @@ case "$1" in
         update-mime-database /usr/share/mime 2>/dev/null || :
       fi
       
+      # Unregister protocol handlers (only if GitHub Desktop is the handler)
+      if command -v xdg-mime > /dev/null 2>&1; then
+        echo "Unregistering protocol handlers..."
+        for protocol in x-github-client x-github-desktop-auth x-github-desktop-dev-auth; do
+          current_handler=$(xdg-mime query default x-scheme-handler/$protocol 2>/dev/null || echo "")
+          if [ "$current_handler" = "github-desktop.desktop" ]; then
+            xdg-mime default "" x-scheme-handler/$protocol 2>/dev/null || :
+          fi
+        done
+      fi
+      
       echo "GitHub Desktop removed successfully!"
     ;;
 

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GitHub Desktop
+GenericName=Git Client
+Comment=Simple collaboration from your desktop
+Exec=/opt/GitHub Desktop/github-desktop --no-sandbox %u
+Icon=github-desktop
+Terminal=false
+Categories=GNOME;GTK;Development;RevisionControl;
+StartupWMClass=GitHubDesktop
+MimeType=x-scheme-handler/x-github-client;x-scheme-handler/x-github-desktop-auth;
+StartupNotify=true

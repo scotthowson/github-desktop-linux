@@ -20,12 +20,38 @@ uses [React](https://reactjs.org/).
 
 Download the official installer for your operating system:
 
- - [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin)
- - [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64)
- - [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32)
- - [Windows machine-wide install](https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi)
+## Linux Installation
 
-Linux is not officially supported; however, you can find installers created for Linux from a fork of GitHub Desktop in the [Community Releases](https://github.com/desktop/desktop#community-releases) section.
+### Installing from .deb (Debian/Ubuntu)
+```bash
+sudo dpkg -i GitHubDesktop-linux-*.deb
+```
+
+### Installing from .rpm (Fedora/RHEL)
+```bash
+sudo rpm -i GitHubDesktop-*.rpm
+```
+
+### OAuth Authentication
+
+GitHub Desktop should launch automatically when you sign in through your browser. If your browser doesn't automatically open the application:
+
+**Option 1:** Copy the OAuth redirect URL and run:
+```bash
+xdg-open "PASTE_URL_HERE"
+```
+
+**Option 2:** Use Chrome/Chromium or Firefox Nightly, which have better protocol handler support.
+
+**Note:** Firefox from Mozilla's website (not the distribution version) has known issues with protocol handlers on Linux. Consider using Firefox Nightly or Chrome for the OAuth flow.
+
+### Requirements
+- libayatana-appindicator3-1
+- libnotify4
+- libxtst6
+- libnss3
+- libsecret-1-0
+- gnome-keyring
 
 ### Beta Channel
 
